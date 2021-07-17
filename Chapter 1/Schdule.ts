@@ -1,25 +1,26 @@
-
 import { createResultFile } from "./util";
 
-let i = 0;
+let iter = 0;
 
-let start = Date.now();
+let startTime = Date.now();
 
-const count = () => {
+const countBusy = () => {
   // counting 마지막 turn 999000000 ~
-  if( i < 1e9 - 1e6 ) setTimeout(count);
+  if( iter < 1e9 - 1e6 ) setTimeout(countBusy);
 
   // 작업 단위를 백만으로 끊음
   // 1. 첫 번째 부분 카운팅: 1 ~ 1000000
   // 2. 두 번째 부분 카운팅: 1000001 ~ 2000000
   do {
-    i += 1;
-  }while(i % 1e6);
+    iter += 1;
+  }while(iter % 1e6 != 0);
 
-  if(i === 1e9){
+  if(iter === 1e9){
     createResultFile(
     'result_schedule_ts.txt',
-    `Time spent processing: ${Date.now() - start}ms`
+    `Time spent processing: ${Date.now() - startTime}ms`
     );
   }
 };
+
+countBusy();
