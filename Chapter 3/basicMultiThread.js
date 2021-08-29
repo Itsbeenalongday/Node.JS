@@ -1,15 +1,6 @@
-const { 
-	Worker, 
-	isMainThread, 
-	parentPort, 
-	workerData 
-} = require('worker_threads');
+import { Worker, isMainThread, parentPort, workerData } from 'worker_threads';
 
-const {
-  cpus,
-  arch,
-  platform,
-} = require('os');
+import { cpus, arch, platform } from 'os';
 
 const min = 2;
 
